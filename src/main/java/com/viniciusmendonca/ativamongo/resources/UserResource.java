@@ -1,8 +1,7 @@
 package com.viniciusmendonca.ativamongo.resources;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.viniciusmendonca.ativamongo.domain.User;
+import com.viniciusmendonca.ativamongo.dto.UserDTO;
 import com.viniciusmendonca.ativamongo.services.UserService;
 
 @RestController
@@ -22,12 +22,11 @@ public class UserResource {
 	
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity <List<User>> findAll() {
-		//User vinicius = new User("1", "Vinicius", "vinicius@hotmail.com", "123456");
-		//User alex = new User("2", "Alex", "alex@hotmail.com", "123456");
+	public ResponseEntity <List<UserDTO>> findAll() {
 		
 		List<User> list = service.findAll();
+		List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
 		
-		return ResponseEntity.ok().body(list);
+		return ResponseEntity.ok().body(listDto);
 	}
 }
