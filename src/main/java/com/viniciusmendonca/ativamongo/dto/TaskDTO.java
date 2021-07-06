@@ -1,20 +1,14 @@
-package com.viniciusmendonca.ativamongo.domain;
+package com.viniciusmendonca.ativamongo.dto;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.viniciusmendonca.ativamongo.domain.Task;
 
-import com.viniciusmendonca.ativamongo.dto.AuthorDTO;
-
-@Document(collection = "tasks")
-public class Task implements Serializable {
+public class TaskDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id
 	private String id;
 	private String name;
 	private String dataHour;
@@ -24,20 +18,20 @@ public class Task implements Serializable {
 	private AuthorDTO author;
 	
 	
-	public Task() {
+	public TaskDTO() {
 		
 	}
 
 
-	public Task(String id, String name, String dataHour, String duration, String local, List<String> guests, AuthorDTO author) {
+	public TaskDTO(Task obj) {
 		super();
-		this.id = id;
-		this.name = name;
-		this.dataHour = dataHour;
-		this.duration = duration;
-		this.local = local;
-		this.guests = guests;
-		this.author = author;
+		this.id = obj.getId();
+		this.name = obj.getName();
+		this.dataHour = obj.getDataHour();
+		this.duration = obj.getDuration();
+		this.local = obj.getLocal();
+		this.guests = obj.getGuests();
+		this.author = obj.getAuthor();
 	}
 
 
@@ -101,10 +95,6 @@ public class Task implements Serializable {
 	}
 
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
 	public AuthorDTO getAuthor() {
 		return author;
 	}
@@ -115,23 +105,8 @@ public class Task implements Serializable {
 	}
 
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Task other = (Task) obj;
-		return Objects.equals(id, other.id);
-	}
-
-
+	
 }

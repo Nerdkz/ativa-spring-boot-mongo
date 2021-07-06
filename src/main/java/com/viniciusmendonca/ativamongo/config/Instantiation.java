@@ -1,8 +1,6 @@
 package com.viniciusmendonca.ativamongo.config;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -26,10 +24,6 @@ public class Instantiation implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
-		
-		
 		
 		userRepository.deleteAll();
 		taskRepository.deleteAll();
@@ -40,8 +34,8 @@ public class Instantiation implements CommandLineRunner{
 		
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
 		
-		Task task1 = new Task(null, "Daily", sdf.parse("05/07/2021 10:30:45"), "01:00", "Sala Teams", Arrays.asList("Vinicius", "Jerferson"), new AuthorDTO(maria));
-		Task task2 = new Task(null, "Daily", sdf.parse("06/07/2021 08:45:45"), "01:00", "Sala Teams", Arrays.asList("Ana", "Maria"), new AuthorDTO(alex));
+		Task task1 = new Task(null, "Daily", "05/07/2021 10:30:45", "01:00", "Sala Teams", Arrays.asList("Vinicius", "Jerferson"), new AuthorDTO(maria));
+		Task task2 = new Task(null, "Daily", "06/07/2021 08:45:45", "01:00", "Sala Teams", Arrays.asList("Ana", "Maria"), new AuthorDTO(alex));
 		
 		taskRepository.saveAll(Arrays.asList(task1, task2));	
 	}
