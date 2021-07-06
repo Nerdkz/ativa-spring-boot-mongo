@@ -8,6 +8,8 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.viniciusmendonca.ativamongo.dto.AuthorDTO;
+
 @Document(collection = "tasks")
 public class Task implements Serializable {
 
@@ -20,7 +22,7 @@ public class Task implements Serializable {
 	private String duration;
 	private String local;
 	private List<String> guests;
-	private User author;
+	private AuthorDTO author;
 	
 	
 	public Task() {
@@ -28,7 +30,7 @@ public class Task implements Serializable {
 	}
 
 
-	public Task(String id, String name, Date dataHour, String duration, String local, List<String> guests, User author) {
+	public Task(String id, String name, Date dataHour, String duration, String local, List<String> guests, AuthorDTO author) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -104,12 +106,12 @@ public class Task implements Serializable {
 		return serialVersionUID;
 	}
 	
-	public User getAuthor() {
+	public AuthorDTO getAuthor() {
 		return author;
 	}
 
 
-	public void setAuthor(User author) {
+	public void setAuthor(AuthorDTO author) {
 		this.author = author;
 	}
 
